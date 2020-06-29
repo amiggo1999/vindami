@@ -1,0 +1,90 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import '_variables';
+
+// Reset
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* General */
+body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.4;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  margin: 0.75rem 0;
+}
+
+h3 {
+  margin: 1rem 0;
+  font-size: 1.6rem;
+}
+
+h4 {
+  font-size: 1.2rem;
+}
+
+/* Utility classes */
+.text-primary {
+  color: $text-primary;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.l-heading {
+  font-size: 3rem;
+}
+
+.p-1 { padding: 1rem; }
+.p-2 { padding: 2rem; }
+.p-3 { padding: 3rem; }
+
+.bg-light {
+  background: $background-primary;
+  color: $text-primary;
+}
+
+.bg-dark {
+  background: $background-secondary;
+  color: $text-primary;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+ 
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-nav .logo img{
+  height: 100px;
+}
+
+.top-nav #nav-searchbar {
+  height: 34px;
+  border-radius: 3px;
+  border: none;
+  padding: 10px;
+}
+
+.top-nav ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}

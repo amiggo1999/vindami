@@ -11,19 +11,25 @@
     </head>
     <body>
         <!-- Navbar - top-nav -->
-        <nav class="bg-dark">
+        <nav class="bg-dark" id="top-nav">
             <div class="top-nav nav-container">
                 <div class="logo">
-                <a href="/"><img src="img/vindami_logo_black.png" alt="logo black"></a>
+                <a href="/"><img src="/img/vindami_logo_black.png" alt="logo black"></a>
                 </div>
-                <input id="nav-searchbar" type="text" placeholder="Search..">
-                <ul>
+                <label for="toggle">&#9776;</label>
+                <input type="checkbox" id="toggle">
+                <ul class="main-nav">
                     <li><a class="btn" href="#pakete">Pakete</a></li>
                     <li><a class="btn" href="#rotweine">Rotweine</a></li>
                     <li><a class="btn" href="#weißweine">Weißweine</a></li>
-                    <li><a class="btn" href="#champagner">Champagner</a></li>
-                    <li><a class="btn" href="{{ route('cart.store') }}"><i class="fas fa-shopping-cart"></i></a></li>
+                    <li><a class="btn" href="/shop">shop</a></li>
                 </ul>
+                <a class="btn" href="/cart"><div>
+                  <i class="fas fa-shopping-cart"></i></a>
+                        @if(Cart::count() > 0)
+                            <span class="cart-counter">{{ Cart::count() }}</span>
+                        @endif
+                </div>
             </div>
         </nav>
         <!-- Header -->

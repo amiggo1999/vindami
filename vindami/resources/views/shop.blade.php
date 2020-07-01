@@ -11,25 +11,31 @@
     </head>
     <body>
         <!-- Navbar - top-nav -->
-        <nav class="bg-dark">
+        <nav class="bg-dark" id="top-nav">
             <div class="top-nav nav-container">
                 <div class="logo">
-                <a href="/"><img src="img/vindami_logo_black.png" alt="logo black"></a>
+                <a href="/"><img src="/img/vindami_logo_black.png" alt="logo black"></a>
                 </div>
-                <input id="nav-searchbar" type="text" placeholder="Search..">
-                <ul>
+                <label for="toggle">&#9776;</label>
+                <input type="checkbox" id="toggle">
+                <ul class="main-nav">
                     <li><a class="btn" href="#pakete">Pakete</a></li>
                     <li><a class="btn" href="#rotweine">Rotweine</a></li>
                     <li><a class="btn" href="#weißweine">Weißweine</a></li>
                     <li><a class="btn" href="#champagner">Champagner</a></li>
-                    <li><a class="btn" href="#warenkorb"><i class="fas fa-shopping-cart"></i></a></li>
                 </ul>
+                <a class="btn" href="/cart"><div>
+                  <i class="fas fa-shopping-cart"></i></a>
+                        @if(Cart::count() > 0)
+                            <span class="cart-counter">{{ Cart::count() }}</span>
+                        @endif
+                </div>
             </div>
         </nav>
         <!-- Featured -->
         <section class="featured">
             <div class="container">
-                <h1 class="text-center">Unsere Bestseller</h1>
+                <h1 class="text-center">Alle Weine</h1>
             </div>
             <!-- products -->
             <div class="products container">

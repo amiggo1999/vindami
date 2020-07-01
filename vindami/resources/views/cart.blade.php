@@ -11,82 +11,93 @@
     </head>
     <body>
         <!-- Navbar - top-nav -->
-        <nav class="bg-dark">
+        <nav class="bg-dark" id="top-nav">
             <div class="top-nav nav-container">
                 <div class="logo">
-                <a href="/"><img src="img/vindami_logo_black.png" alt="logo black"></a>
+                <a href="/"><img src="/img/vindami_logo_black.png" alt="logo black"></a>
                 </div>
-                <input id="nav-searchbar" type="text" placeholder="Search..">
-                <ul>
+                <label for="toggle">&#9776;</label>
+                <input type="checkbox" id="toggle">
+                <ul class="main-nav">
                     <li><a class="btn" href="#pakete">Pakete</a></li>
                     <li><a class="btn" href="#rotweine">Rotweine</a></li>
                     <li><a class="btn" href="#weißweine">Weißweine</a></li>
-                    <li><a class="btn" href="#champagner">Champagner</a></li>
-                    <li><a class="btn" href="#warenkorb"><i class="fas fa-shopping-cart"></i></a>
-                        @if(Cart::count() > 0)
-                            <span>{{ Cart::count() }}</span></li>
-                        @endif
+                    <li><a class="btn" href="/shop">shop</a></li>
                 </ul>
+                <a class="btn" href="/cart"><div>
+                  <i class="fas fa-shopping-cart"></i></a>
+                        @if(Cart::count() > 0)
+                            <span class="cart-counter">{{ Cart::count() }}</span>
+                        @endif
+                </div>
             </div>
         </nav>
-        @if (session()->has('success_message'))
-            <div class="">
-                {{ session()->get('success_message') }}
-            </div>
-        @endif
+        <!-- Success Message -->
+        <div class="container success-message">
+            @if (session()->has('success_message'))
+                <div class="">
+                    {{ session()->get('success_message') }}
+                </div>
+            @endif
 
-        @if(count($errors) > 0)
-            <div class="">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+            @if(count($errors) > 0)
+                <div>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <h2>{{ Cart::count() }} Artikel im Warenkorb</h2>
+        </div>
 
         @if(Cart::count() > 0)
-            <h2>{{ Cart::count() }} Artikel im Warenkorb</h2>
-            <!-- Cart table -->
-            <div class="cart-product-table container">
-                <div>
-                    <h3></h3>
-                    <h3>Artikel</h3>
-                    <h3>Anzahl</h3>
-                    <h3>Einzelpreis</h3>
-                    <h3>Gesamtsumme</h3>
-                    <h3></h3>
-                </div>
-                @foreach(Cart::content() as $item)
-                <div>
-                    <p>
-                        <a href="{{ route('shop.show', $item->model->slug) }}"><img src="{{ $item->model->img }}" alt="" class="cart-product-img"></a>
-                    </p>
-                    <p>
-                        <a href="{{ route('shop.show', $item->model->slug) }}">{{ $item->model->name }}</a>
-                    </p>
-                    <p>
-
-                    </p>
-                    <p>
-                       {{ $item->model->presentPrice() }}
-                    </p>
-                    <p>
-                        <form action="{{ route('cart.destroy', $item->rowId) }}" method="POST">
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
-                            <button type="submit" class="">Entfernen</button>
-                        </form>
-                    </p>
-                </div>
-                    
-                @endforeach
+            <div class="container">
+                
+                    <!-- Cart table -->
+                    <div class="cart-product-table">
+                        <div>
+                            <h3></h3>
+                            <h3>Artikel</h3>
+                            <h3>Anzahl</h3>
+                            <h3>Einzelpreis</h3>
+                            <h3></h3>
+                        </div>
+                        @foreach(Cart::content() as $item)
+                        <div>
+                            <p>
+                                <a href="{{ route('shop.show', $item->model->slug) }}"><img src="{{ $item->model->img }}" alt="" class="cart-product-img"></a>
+                            </p>
+                            <p>
+                                <a href="{{ route('shop.show', $item->model->slug) }}">{{ $item->model->name }}</a>
+                            </p>
+                            <div>
+                                <select name="" id="">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                            <p>
+                                {{ $item->model->presentPrice() }}
+                            </p>
+                            <form action="{{ route('cart.destroy', $item->rowId) }}" method="POST">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                <button type="submit" class="">Entfernen</button>
+                            </form>
+                        </div>
+                        @endforeach
+                        <h3 class="total-price">
+                            Gesamtsumme: {{ Cart::subtotal() / 100 }} €
+                        </h3>
+                    </div>
+                @else
+                    <h2>Keine Artikel im Warenkorb</h2>
+                @endif
             </div>
-        @else
-            <h2>Keine Artikel im Warenkorb</h2>
-        @endif
-
-
+            
         <!-- Footer -->
         <footer class="bg-dark">
             <nav class="footer-nav nav-container">

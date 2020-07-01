@@ -124,6 +124,15 @@ h4 {
   padding: 10px;
 }
 
+.top-nav label {
+  font-size: 1.8rem;
+  display: none;
+}
+
+#top-nav {
+  box-shadow: 1px 1px 20px #a6a6a6;
+}
+
 nav ul {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -140,6 +149,17 @@ nav ul li {
 }
 
 nav ul li a {
+  color: #333;
+}
+
+#toggle {
+  display: none;
+}
+
+.cart-counter {
+  background: #fff;
+  padding: 10px;
+  border-radius: 50%;
   color: #333;
 }
 
@@ -237,7 +257,6 @@ nav ul li a {
 }
 
 /* product-page */
-
 .product-info {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -258,7 +277,6 @@ nav ul li a {
 }
 
 /* product-details */
-
 .product-info .product-details {
   min-width: 400px;
   margin-left: auto;
@@ -327,7 +345,6 @@ nav ul li a {
 }
 
 /* product-info-2 */
-
 .product-description {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
@@ -340,13 +357,15 @@ nav ul li a {
 }
 
 /* winery-info */
-
 .winery-info img {
   max-width: 100%;
   height: auto;
 }
 
 /* Cart */
+.success-message {
+  padding-bottom: 0;
+}
 
 .cart-product-img {
   height: 120px;
@@ -356,14 +375,15 @@ nav ul li a {
 
 .cart-product-table {
   background: #eee;
-  width: 80%;
+  width: 100%;
   margin: 40px auto;
   padding: 40px;
+  padding-top: 10px;
 }
 
-.cart-product-table div {
+.cart-product-table > div {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: 1fr 2fr 2fr 2fr 2fr;
   align-items: center;
 }
 
@@ -371,17 +391,34 @@ nav ul li a {
   background: #fff;
 }
 
-.cart-product-table div:nth-child(2n+3) {
+.cart-product-table > div:nth-child(2n+3) {
   background: #f9f9f9;
 }
 
-.cart-product-table div p, .cart-product-table div h3, .cart-product-table div img, .cart-product-table form{
+.cart-product-table div p, .cart-product-table div h3, .cart-product-table div img, .cart-product-table form, .cart-product-table div{
   margin: 0 auto;
   text-align: center;
 }
 
 .cart-product-table div h3 {
   padding: 20px 0;
+}
+
+.cart-product-table div button {
+  padding: 10px;
+  background: #fff;
+  color: red;
+  border: 2px solid #ddd;
+}
+
+.cart-product-table div select {
+  padding: 10px;
+  border: 1px solid #ddd ;
+  text-align: center;
+}
+
+.cart-product-table .total-price {
+  text-align: right;
 }
 
 
@@ -394,6 +431,28 @@ nav ul li a {
 
 /* Desktop */
 @media screen and (max-width: 1200px) {
+  .main-nav {
+    display: none;
+  }
+
+  .top-nav label {
+    display: block;
+  }
+
+  #toggle:checked + .main-nav {
+    display: block;
+    width: 80%;
+    position: absolute;
+    top: 80px;
+    text-align: center;
+  }
+
+  .main-nav a {
+    display: block;
+    background: #f4f4f4;
+    color: #000;
+    border-bottom: 1px solid #ddd;
+  }
 
   .product-info {
     grid-column: 1 /span 2;
